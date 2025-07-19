@@ -19,7 +19,7 @@ jobs:
     - name: Build
       run: |
         mkdir build && cd build
-        cmake ../src -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+        cmake .. -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
         make -j$(sysctl -n hw.ncpu)
 
     - name: Upload Artifact
