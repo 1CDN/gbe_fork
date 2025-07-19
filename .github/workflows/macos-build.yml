@@ -16,15 +16,14 @@ jobs:
 
     - name: Create build directory
       run: mkdir build
-      working-directory: ${{ github.workspace }}
 
     - name: Configure with CMake
-      run: cmake ..
-      working-directory: ${{ github.workspace }}/build
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+      working-directory: build
 
     - name: Build with make
       run: make -j$(sysctl -n hw.ncpu)
-      working-directory: ${{ github.workspace }}/build
+      working-directory: build
 
     - name: Upload compiled binaries
       uses: actions/upload-artifact@v4
